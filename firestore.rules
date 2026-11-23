@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Expedientes de usuarios (permite acceso para autenticación y perfiles de la academia)
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Movimientos contables y transacciones ACH
+    match /transactions/{txId} {
+      allow read, write: if true;
+    }
+
+    // Registros de vuelo y avance práctico RAC 141
+    match /flight_progress/{recordId} {
+      allow read, write: if true;
+    }
+
+    // Itinerarios y despachos de vuelo
+    match /itineraries/{itineraryId} {
+      allow read, write: if true;
+    }
+
+    // Gastos Operativos y Facturación de Flota
+    match /operating_expenses/{expenseId} {
+      allow read, write: if true;
+    }
+
+    // Mensajería interna de contabilidad y soporte
+    match /accounting_messages/{messageId} {
+      allow read, write: if true;
+    }
+
+    // Libros de cálculo y hojas de control de flota/horas
+    match /spreadsheets/{spreadsheetId} {
+      allow read, write: if true;
+    }
+
+    // Configuración y plantillas de WhatsApp
+    match /whatsapp_config/{configId} {
+      allow read, write: if true;
+    }
+    match /whatsapp_triggers/{triggerId} {
+      allow read, write: if true;
+    }
+    match /whatsapp_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Bitácora forense de auditoría regulatoria AAC (Inmutable: sin modificación ni borrado)
+    match /audit_logs/{logId} {
+      allow read, create: if true;
+      allow update, delete: if false;
+    }
+  }
+}

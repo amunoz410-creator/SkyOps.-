@@ -1,0 +1,333 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-accent: #0284c7;
+  --color-accent-hover: #0369a1;
+  --color-accent-light: #e0f2fe;
+  --color-accent-subtle: rgba(2, 132, 199, 0.15);
+  --color-accent-ring: rgba(2, 132, 199, 0.35);
+
+  --app-bg: #f1f5f9;
+  --app-card-bg: #ffffff;
+  --app-card-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #64748b;
+  --header-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark {
+  color-scheme: dark;
+  --app-bg: #0f172a;
+  --app-card-bg: #1e293b;
+  --app-card-border: #334155;
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8;
+  --header-bg: rgba(15, 23, 42, 0.95);
+}
+
+/* Base Body Styles */
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ==========================================================================
+   DYNAMIC ACCENT COLOR BINDINGS
+   Applies selected theme accent color universally across SkyOps controls
+   ========================================================================== */
+[data-accent-theme="true"] .bg-sky-600,
+[data-accent-theme="true"] .bg-sky-500 {
+  background-color: var(--color-accent) !important;
+}
+
+[data-accent-theme="true"] .hover\:bg-sky-700:hover,
+[data-accent-theme="true"] .hover\:bg-sky-600:hover {
+  background-color: var(--color-accent-hover) !important;
+}
+
+[data-accent-theme="true"] .active\:bg-sky-800:active {
+  filter: brightness(0.85);
+}
+
+[data-accent-theme="true"] .text-sky-600,
+[data-accent-theme="true"] .text-sky-500 {
+  color: var(--color-accent) !important;
+}
+
+[data-accent-theme="true"] .border-sky-600,
+[data-accent-theme="true"] .border-sky-500 {
+  border-color: var(--color-accent) !important;
+}
+
+[data-accent-theme="true"] .focus\:border-sky-500:focus {
+  border-color: var(--color-accent) !important;
+}
+
+[data-accent-theme="true"] .focus\:ring-sky-500:focus {
+  --tw-ring-color: var(--color-accent-ring) !important;
+}
+
+[data-accent-theme="true"] .shadow-sky-600\/20,
+[data-accent-theme="true"] .shadow-sky-600\/30 {
+  --tw-shadow-color: var(--color-accent-ring) !important;
+}
+
+/* Light Mode Tint */
+:root:not(.dark) [data-accent-theme="true"] .bg-sky-50 {
+  background-color: var(--color-accent-light) !important;
+}
+:root:not(.dark) [data-accent-theme="true"] .text-sky-700,
+:root:not(.dark) [data-accent-theme="true"] .text-sky-800 {
+  color: var(--color-accent-hover) !important;
+}
+
+/* Dark Mode Tint */
+.dark [data-accent-theme="true"] .bg-sky-50,
+.dark [data-accent-theme="true"] .bg-sky-500\/20 {
+  background-color: var(--color-accent-subtle) !important;
+}
+.dark [data-accent-theme="true"] .text-sky-400,
+.dark [data-accent-theme="true"] .text-sky-300 {
+  color: var(--color-accent) !important;
+  filter: brightness(1.25);
+}
+
+/* Dedicated Utility Accent Classes */
+.accent-bg {
+  background-color: var(--color-accent) !important;
+}
+.accent-bg-hover:hover {
+  background-color: var(--color-accent-hover) !important;
+}
+.accent-text {
+  color: var(--color-accent) !important;
+}
+.accent-border {
+  border-color: var(--color-accent) !important;
+}
+
+/* ==========================================================================
+   GLOBAL DARK MODE ADAPTATIONS
+   Guarantees all 12 modules transition cleanly into dark mode
+   ========================================================================== */
+.dark .bg-white {
+  background-color: var(--app-card-bg) !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: var(--app-bg) !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: rgba(255, 255, 255, 0.035) !important;
+}
+
+.dark .bg-slate-50\/80 {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.dark .bg-slate-50\/50 {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.dark .bg-white\/95 {
+  background-color: var(--header-bg) !important;
+}
+
+/* Text Adaptations */
+.dark .text-slate-900 {
+  color: var(--app-text) !important;
+}
+
+.dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Border Adaptations */
+.dark .border-slate-200,
+.dark .border-slate-100 {
+  border-color: var(--app-card-border) !important;
+}
+
+.dark .border-slate-300 {
+  border-color: #475569 !important;
+}
+
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--app-card-border) !important;
+}
+
+/* Form Fields & Interactive Elements in Dark Mode */
+.dark input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+.dark select,
+.dark textarea {
+  background-color: rgba(15, 23, 42, 0.7) !important;
+  color: #f8fafc !important;
+  border-color: var(--app-card-border) !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark option {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+}
+
+/* Status Badges in Dark Mode */
+.dark .bg-emerald-50,
+.dark .bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+  color: #6ee7b7 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark .bg-amber-50,
+.dark .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  color: #fcd34d !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+.dark .bg-rose-50,
+.dark .bg-rose-100 {
+  background-color: rgba(244, 63, 94, 0.18) !important;
+  color: #fda4af !important;
+  border-color: rgba(244, 63, 94, 0.3) !important;
+}
+
+.dark .bg-purple-50,
+.dark .bg-purple-100 {
+  background-color: rgba(168, 85, 247, 0.18) !important;
+  color: #d8b4fe !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+.dark .bg-indigo-50,
+.dark .bg-indigo-100 {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  color: #a5b4fc !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Shadows in Dark Mode */
+.dark .shadow-xs,
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Visible vertical scrollbars inside modals & popups */
+.fixed.inset-0 .overflow-y-auto:not(.no-scrollbar),
+.fixed.inset-0.overflow-y-auto:not(.no-scrollbar) {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.6) rgba(148, 163, 184, 0.15);
+}
+.fixed.inset-0 .overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar,
+.fixed.inset-0.overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.fixed.inset-0 .overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-track,
+.fixed.inset-0.overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.15);
+  border-radius: 9999px;
+}
+.fixed.inset-0 .overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-thumb,
+.fixed.inset-0.overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.6);
+  border-radius: 9999px;
+}
+.fixed.inset-0 .overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-thumb:hover,
+.fixed.inset-0.overflow-y-auto:not(.no-scrollbar)::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.85);
+}
+
+/* ==========================================================================
+   CINEMATIC INTRO & AVIATION TYPOGRAPHY STYLES
+   ========================================================================== */
+.font-aviation {
+  font-family: 'Chakra Petch', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-aviation-display {
+  font-family: 'Rajdhani', 'Chakra Petch', 'Montserrat', sans-serif;
+}
+
+/* Left-to-Right Luminous Shimmer / Light Beam Sweep */
+@keyframes cinematic-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.animate-cinematic-sweep {
+  animation: cinematic-sweep 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes cinematic-lens-flare {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.animate-cinematic-flare {
+  animation: cinematic-lens-flare 3s ease-in-out infinite;
+}
+
+@keyframes runway-grid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 40px;
+  }
+}
+
+.animate-runway-grid {
+  animation: runway-grid 12s linear infinite;
+}

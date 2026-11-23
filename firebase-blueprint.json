@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "users": {
+      "description": "Expedientes de usuarios, alumnos, instructores y administradores de la escuela de aviación SkyOps",
+      "fields": {
+        "id": { "type": "string", "description": "Identificador único de usuario (UID de Firebase Auth o ID del sistema)" },
+        "nombre": { "type": "string", "description": "Nombre completo del usuario" },
+        "correo": { "type": "string", "description": "Dirección de correo electrónico" },
+        "rol": { "type": "string", "description": "Rol aeronáutico: estudiante, instructor, contabilidad, admin, escuela" },
+        "telefono": { "type": "string", "description": "Teléfono de contacto" },
+        "foto_perfil": { "type": "string", "description": "URL del avatar o foto de perfil" },
+        "curso_actual": { "type": "string", "description": "Programa de vuelo actual (ej: Privado, Comercial, IFR, Multi-Motor)" },
+        "licencia": { "type": "string", "description": "Número de licencia de piloto o instructor AAC" },
+        "vencimiento_licencia": { "type": "string", "description": "Fecha de expiración de licencia (YYYY-MM-DD)" },
+        "numero_medico": { "type": "string", "description": "Número de certificado médico aeronáutico Clase 1 o 2" },
+        "vencimiento_medico": { "type": "string", "description": "Fecha de expiración de examen médico (YYYY-MM-DD)" },
+        "activo": { "type": "boolean", "description": "Estado de actividad de la cuenta" },
+        "auth_provider": { "type": "string", "description": "Proveedor de autenticación: google o local" },
+        "estado_autorizacion": { "type": "string", "description": "Estado de aprobación por admin principal: aprobado, pendiente_aprobacion, rechazado" },
+        "autorizado_por": { "type": "string", "description": "Nombre o ID del Administrador Principal que autorizó el acceso" },
+        "fecha_autorizacion": { "type": "string", "description": "Fecha de autorización o rechazo (ISO)" },
+        "fecha_solicitud": { "type": "string", "description": "Fecha de solicitud inicial con Google (ISO)" },
+        "motivo_rechazo_acceso": { "type": "string", "description": "Justificación en caso de rechazo del acceso" },
+        "creado_en": { "type": "string", "description": "Fecha de creación del registro" }
+      }
+    },
+    "transactions": {
+      "description": "Movimientos contables, abonos ACH bancarios, cargos por horas de vuelo y combustible",
+      "fields": {
+        "id": { "type": "string", "description": "Identificador único de la transacción contable" },
+        "estudiante_id": { "type": "string", "description": "ID del estudiante titular de la cuenta" },
+        "estudiante_nombre": { "type": "string", "description": "Nombre del estudiante" },
+        "fecha": { "type": "string", "description": "Fecha del movimiento financiero" },
+        "tipo": { "type": "string", "description": "cargo o abono" },
+        "concepto": { "type": "string", "description": "Concepto aeronáutico de la transacción" },
+        "monto": { "type": "number", "description": "Monto en dólares estadounidenses USD" },
+        "referencia": { "type": "string", "description": "Referencia bancaria ACH o número de comprobante" },
+        "estado_aprobacion": { "type": "string", "description": "Estado: aprobado, pendiente_revision_bancaria, rechazado" },
+        "creado_en": { "type": "string", "description": "Fecha y hora de registro" }
+      }
+    },
+    "flight_progress": {
+      "description": "Registros de avance de vuelo, horas RAC 141 y calificaciones prácticas por lección",
+      "fields": {
+        "id": { "type": "string", "description": "ID del progreso de vuelo" },
+        "estudiante_id": { "type": "string", "description": "ID del estudiante" },
+        "leccion_id": { "type": "string", "description": "ID de la lección del plan de estudios" },
+        "fecha": { "type": "string", "description": "Fecha de la misión de vuelo" },
+        "horas_vuelo": { "type": "number", "description": "Horas voladas en la lección" },
+        "instructor_id": { "type": "string", "description": "ID del instructor evaluador" },
+        "instructor_nombre": { "type": "string", "description": "Nombre del instructor evaluador" },
+        "firma_instructor": { "type": "string", "description": "Firma digital o validación CFI" },
+        "completado": { "type": "boolean", "description": "Indicador de lección satisfactoria" }
+      }
+    },
+    "itineraries": {
+      "description": "Itinerarios de vuelo programados, reservas de aeronaves y despachos de instrucción",
+      "fields": {
+        "id": { "type": "string", "description": "ID del itinerario" },
+        "estudiante_id": { "type": "string", "description": "ID del alumno piloto" },
+        "instructor_id": { "type": "string", "description": "ID del instructor asignado" },
+        "aeronave": { "type": "string", "description": "Matrícula de aeronave (ej: HP-1724, HP-1588)" },
+        "fecha": { "type": "string", "description": "Fecha programada de vuelo" },
+        "hora_inicio": { "type": "string", "description": "Hora de salida" },
+        "hora_fin": { "type": "string", "description": "Hora estimada de retorno" },
+        "estado": { "type": "string", "description": "programado, completado, cancelado" }
+      }
+    },
+    "audit_logs": {
+      "description": "Bitácora forense e inmutable de eventos regulatorios según RAC 141, RAC 61 y RAC 67",
+      "fields": {
+        "id": { "type": "string", "description": "ID inmutable del evento de auditoría" },
+        "timestamp": { "type": "string", "description": "Marca temporal UTC ISO 8601" },
+        "usuario_id": { "type": "string", "description": "ID del usuario autor de la acción" },
+        "usuario_nombre": { "type": "string", "description": "Nombre completo del autor" },
+        "usuario_rol": { "type": "string", "description": "Rol del autor al momento del evento" },
+        "modulo": { "type": "string", "description": "Módulo del sistema involucrado" },
+        "accion": { "type": "string", "description": "Acción ejecutada" },
+        "descripcion": { "type": "string", "description": "Detalle descriptivo forense" },
+        "severidad": { "type": "string", "description": "Nivel: regulatoria, critica, alerta, info" }
+      }
+    }
+  }
+}

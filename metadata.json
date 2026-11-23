@@ -1,0 +1,6 @@
+{
+  "name": "SkyOps",
+  "description": "Plataforma integral de gestión de escuelas de aviación bajo regulaciones de la República de Panamá (AAC Panamá - RAC 141 & RAC 61): autenticación con Google y Firebase Auth con autorización obligatoria de administradores principales, persistencia en Cloud Firestore en tiempo real, control de itinerarios, hojas de progreso de 32 maniobras con recálculo en cascada, vigencias de instructores con Hard Lock, control contable y saldos, dashboard financiero con análisis de rentabilidad, bitácora de auditoría inmutable con sello criptográfico SHA-256 para inspecciones AAC, exportación a Excel/Sheets, vinculación con WhatsApp Business Cloud API y automatización de alertas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
